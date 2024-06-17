@@ -18,6 +18,8 @@ public class Clicker : MonoBehaviour
 
     public TextMeshProUGUI upgradeTxt;
 
+    public ObjectPool ObjectPool;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +28,26 @@ public class Clicker : MonoBehaviour
         coroutine = AutoClick();
         StartCoroutine(coroutine);
     }
-       
+
+    private void Update()
+    {
+        if ( Input.GetMouseButtonDown(0) )
+        {
+            Click();
+        }
+    }
+
 
     public void Click()
-    {
+    {        
         point += oneClickPoint;
 
         pointTxt.text = point.ToString();
 
         Debug.Log("Å¬¸¯ µÇ¾îÁü");
+
+
+        ObjectPool.SpawnObject("ClickUI");
     }
 
     public IEnumerator AutoClick()
